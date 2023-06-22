@@ -25,9 +25,7 @@ public class QueuedAudioPlayer: AudioPlayer, QueueManagerDelegate {
     public var repeatMode: RepeatMode = .off
 
     public override var currentItem: AudioItem? {
-        if (!queue.current.isEmpty) {
-            queue.current
-        }
+        queue.current    
     }
 
     /**
