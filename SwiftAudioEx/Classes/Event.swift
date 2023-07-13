@@ -115,7 +115,6 @@ extension AudioPlayer {
     }
     
     public class Event<EventData> {
-        
         private let queue: DispatchQueue = DispatchQueue(label: "com.swiftAudioEx.eventQueue")
         var invokers: [Invoker<EventData>] = []
         
@@ -127,17 +126,17 @@ extension AudioPlayer {
         
         public func removeListener(_ listener: AnyObject) {
             queue.async {
-                self.invokers = self.invokers.filter({ (invoker) -> Bool in})
-                return invoker.listener !== listener
+                self.invokers = self.invokers.filter({ (invoker) -> Bool in
+                    return invoker.listener !== listener
+                })
             }
         }
         
         func emit(data: EventData) {
-            queue.asycn {
+            queue.async {
                 self.invokers = self.invokers.filter { $0.invoke(data) }
             }
         }
-        
     }
     
 }
